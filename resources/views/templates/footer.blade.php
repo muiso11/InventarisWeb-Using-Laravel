@@ -1,3 +1,7 @@
+<div class="footer">
+    <p>Hai</p>
+</div>
+
 <script src="js/script.js"></script>
 <script src="jquery/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

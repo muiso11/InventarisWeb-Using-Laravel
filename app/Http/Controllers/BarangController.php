@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Http\Requests\StoreBarangRequest;
 use App\Http\Requests\UpdateBarangRequest;
+use Illuminate\Http\Request;
 
 class BarangController extends Controller
 {
@@ -13,19 +14,57 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $active = $request->active; //Untuk Mengambil Parameter Di URL Berupa (url?nama=value)
         //Berfungsi untuk mengirimkan data dari Data Base ke view (html)
-        $datas = Barang::all(); //::all harus disertai dengan nama modal yang sudah dibuat (use App\Models\Barang)
+        // $datas = Barang::all(); //::all harus disertai dengan nama modal yang sudah dibuat (use App\Models\Barang)
         
+        $datas = Barang::where('jenis',$active)->orderBy('nama')->take(100)->get();
+
+        // dd($datas);
+
+        // $flights = Flight::where('active', 1)
+        //        ->orderBy('name')
+        //        ->take(10)
+        //        ->get();
+
         // ini sebagai nomor pada table
         // karena jika pakai id maka nomornya akan acak
         $nomor = 1;
+        
 
+        // dd($active);
+
+        if($active === "menengah"){
+            $active = 'menengah';
+        }elseif($active === "lanjut"){
+            $active = 'lanjut';
+        }else{
+            $active = 'dasar';
+        }
+
+        // if(isset($request->active) === "menengah"){
+        //     $active = 'menengah';
+        // }elseif(isset($request->active) === "lanjut"){
+        //     $active = 'lanjut';
+        // }else{
+        //     $active = 'dasar';
+        // }
+
+        // if(isset($_GET['active']) == "menengah"){
+        //     $active = 'menengah';
+        // }elseif(isset($_GET['active']) == "lanjut"){
+        //     $active = 'lanjut';
+        // }else{
+        //     $active = 'dasar';
+        // }
+        
+        // $active = '';
         // digunakan untuk mengembalikan nilai ke home.blade.php 
         // dengan memberikan data $datas dan $nomor
-        return view('home',compact(
-            'datas','nomor'
+        return view('main',compact(
+            'datas','nomor','active'
         ));
     }
 
@@ -121,5 +160,14 @@ class BarangController extends Controller
         $model = Barang::find($id);
         $model->delete();
         return redirect('/');
+    }
+    public function jenis(Request $request)
+    {
+
+        return view('loading',[
+            'datas'=>Barang::all(),
+            'nomor' => 1,
+            'active' => $request->active
+        ]);
     }
 }
