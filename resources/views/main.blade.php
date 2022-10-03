@@ -32,7 +32,7 @@
 				</div>
 				<div class="row">
 					<a href="#addnew" data-toggle="modal" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> New</a>
-					<a href="print_pdf.php" class="btn btn-success pull-right"><span class="glyphicon glyphicon-print"></span> PDF</a>
+					<a href="downloadPDF/{{ $active }}" class="btn btn-success pull-right"><span class="glyphicon glyphicon-print"></span> PDF</a>
 				</div>
 				<div class="row" style="margin-top: 20px">
 					<table id="myTable" class="table table-bordered table-striped">

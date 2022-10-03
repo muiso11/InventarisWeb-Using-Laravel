@@ -6,6 +6,7 @@ use App\Models\Barang;
 use App\Http\Requests\StoreBarangRequest;
 use App\Http\Requests\UpdateBarangRequest;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BarangController extends Controller
 {
@@ -169,5 +170,14 @@ class BarangController extends Controller
             'nomor' => 1,
             'active' => $request->active
         ]);
+    }
+    public function downloadPDF($active)
+    {
+        // $datas = Barang::all();
+        $datas = Barang::where('jenis',$active)->orderBy('nama')->take(100)->get();
+        $nomor = 1;
+        $pdf = Pdf::loadView('layouts.pdf', compact('datas','nomor','active'));
+        
+        return $pdf->stream();
     }
 }

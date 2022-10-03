@@ -38,6 +38,6 @@ Route::get('/',function(){
 // karena rute '/' tidak mampu untuk menerima method selain GET
 Route::resource('barang',BarangController::class);
 
-
+Route::get('downloadPDF/{active}',[BarangController::class,'downloadPDF']);
 
 
