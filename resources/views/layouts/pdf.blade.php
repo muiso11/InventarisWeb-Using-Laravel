@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head>{{-- gi --}}
     <meta charset="utf-8">
     <style>
         #customers {

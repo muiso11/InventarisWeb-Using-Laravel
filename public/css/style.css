@@ -17,34 +17,27 @@ body{
     background-color: purple;
     color: white;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     position: relative;
     top: 0;
 }
-.nav-left{
-    position: absolute;
-    left: 40px;
-    z-index: 999;
-}
-.nav-left button{
-    border: none;
-
-}
-.nav-center{
-    margin: auto;
+.nav-left, .nav-center, .nav-right{
+    width: 30%;
+    height: 40px;
+    /* border: 1px solid black; */
+    overflow: hidden;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    color: white;
 }
-.nav-center img{
-    width: 25px;
+.nav-left img{
+    width: 8%;
+    margin-right: 10px;
 }
-
-.nav-right{
-    position: relative;
-    right: 20px;
+.nav-left p{
+    margin-top: 10px;
 }
-
 .nav-right a{
     color: white;
 }
